@@ -30,7 +30,6 @@ namespace WebStore
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseStaticFiles();
 
             //var response = Configuration["CustomClientResponse"];
