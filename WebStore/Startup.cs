@@ -30,7 +30,6 @@ namespace WebStore
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseStaticFiles();
 
             app.UseMvc(route =>
