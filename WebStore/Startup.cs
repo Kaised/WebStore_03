@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebStore.Infrastructure.Implementations;
+using WebStore.Infrastructure.Interfaces;
 
 namespace WebStore
 {
@@ -21,6 +23,8 @@ namespace WebStore
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IEmployeesData, InMemoryEmployeesData>();
+
             services.AddMvc();
         }
 
@@ -31,6 +35,8 @@ namespace WebStore
                 app.UseDeveloperExceptionPage();
             }
             app.UseStaticFiles();
+
+            //app.UseWelcomePage("/welcome");
 
             app.UseMvc(route =>
             {

@@ -8,7 +8,11 @@ namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index() => View();
+        public IActionResult Index()
+        {
+            //throw new ApplicationException("Hello!");
+            return View();
+        }
 
         public IActionResult Shop() => View();
 
