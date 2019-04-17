@@ -19,7 +19,7 @@ namespace WebStore.Models
 
         [Display(Name = "Фамилия"), Required(ErrorMessage = "Фамилия является обязательной")]
         //[MinLength(2)]
-        [RegularExpression(@"(^[А-Я][а-я]{2,150}$)|(^[A-Z][a-z]{2,150}$)", ErrorMessage = "Некорректный формат фамилии")]
+        [RegularExpression(@"(^[А-ЯЁ][а-яё]{2,150}$)|(^[A-Z][a-z]{2,150}$)", ErrorMessage = "Некорректный формат фамилии")]
         public string SurName { get; set; }
 
         [Display(Name = "Отчество")]

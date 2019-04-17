@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.Models;
@@ -51,7 +52,7 @@ namespace WebStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Employee employee)
+        public IActionResult Edit(Employee employee, [FromServices] IMapper mapper)
         {
             if (employee.Age < 18)
                 ModelState.AddModelError("Age", "Возраст слишком маленький");
@@ -66,10 +67,14 @@ namespace WebStore.Controllers
                 var db_employee = _EmployeesData.GetById(employee.Id);
                 if (db_employee is null)
                     return NotFound();
-                db_employee.FirstName = employee.FirstName;
-                db_employee.SurName = employee.SurName;
-                db_employee.Patronymic = employee.Patronymic;
-                db_employee.Age = employee.Age;
+
+                mapper.Map(employee, db_employee);
+                //AutoMapper.Mapper.Map(employee, db_employee);
+
+                //db_employee.FirstName = employee.FirstName;
+                //db_employee.SurName = employee.SurName;
+                //db_employee.Patronymic = employee.Patronymic;
+                //db_employee.Age = employee.Age;
             }
             else
                 _EmployeesData.AddNew(employee);
